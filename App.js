@@ -1,23 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import reducers from './src/reducers';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import firebase from 'firebase';
+import LoginForm from './src/components/LoginForm';
 
 export default class App extends React.Component {
+componentWillMount() {
+  const config = {
+    apiKey: 'AIzaSyAUKe_PLEuVSvps5-X3gHqTjXjhUSX3HAc',
+    authDomain: 'manager-ccb4d.firebaseapp.com',
+    databaseURL: 'https://manager-ccb4d.firebaseio.com',
+    projectId: 'manager-ccb4d',
+    storageBucket: 'manager-ccb4d.appspot.com',
+    messagingSenderId: '960107962155'
+  };
+
+  firebase.initializeApp(config);
+}
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))} >
+        <LoginForm/>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
