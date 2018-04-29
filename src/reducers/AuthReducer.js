@@ -6,7 +6,8 @@ import {
 
 const INITIAL_STATE = {
     email: '',
-    password: ''
+    password: '',
+    user: ''
 };
 
 export default (state=INITIAL_STATE, action) => {
