@@ -10,10 +10,10 @@ const RouterComponent = () => {
         <Router sceneStyle={{ paddingTop: 65 }} >
             <Scene key='auth' initial>
                 <Scene
+                    initial
                     key='Login'
                     component = {LoginForm}
                     title='Please Login'
-                    // initial 
                 />
             </Scene>
 
@@ -23,7 +23,6 @@ const RouterComponent = () => {
                     component = {EmployeeList}
                     title='Employees'
                     rightTitle='Add'
-                    initial
                     onRight={ ()=> Actions.employeeCreate() } />
                 <Scene
                     key='employeeCreate'
